@@ -1,61 +1,63 @@
 
+let saludo = document.getElementById("tituloPrincipal")
 
-const saludo = confirm('¡Bienvenido al asistente dietario Gemini! \n Desea realizar una consulta?')
+saludo.innerHTML = "<h1>Asistente dietario Gemini</h1>"
 
-let loop = saludo
+let formulario = document.getElementById("formularioUsuario");
 
-function pesoIdeal1 (altura,vael0, vael1, vael3) {      
-    
-  return ((altura - vael0) * vael1 + vael3)
+formulario.innerHTML =
+
+    ` <ul>
+      <li>
+          <label for="Ingrese su nombre y apellido">Nombre y apellido</label>
+          <input type="text" id="nombre">
+      </li>
+      <li>
+          <label for="Ingrese su fecha de nacimiento">Fecha de nacimiento</label>                
+          <input type="date" id="fdn">
+                </li>
+                <li>
+                    <label for="Ingrese su peso en kilogramos">Peso actual</label>
+                    <input type="number" id="peso">
+                </li>
+                <li>
+                    <label for="Ingrese su altura en centimetros">Altura</label>
+                    <input type="number" id="altura">
+                </li>
+                <li>
+                    <label for="Genero">Genero</label>
+                    <select name="genero" id="genero">
+                        <option value="hombre">Masculino</option>
+                        <option value="mujer">Femenino</option>
+                    </select>
+                </li>
+                <li>
+                    <textarea name="Objetivo a alcanzar con la dieta" id="objetivo" placeholder="Objetivos del plan"></textarea>
+                </li>
+                <li><input type="submit"></li>
+    </ul>`;
+
+class Usuario {
+
+    constructor(nombre, fdn, altura, peso, genero) {
+
+        this.nombre = nombre;
+        this.altura = altura;
+        this.fdn = fdn;
+        this.peso = peso;
+        this.genero = genero;
+    }
 }
 
-function pesoIdeal2 (altura, vael0, vael2, vael3) { 
-   
-   return ((altura - vael0) * vael2 + vael3)
+const datos = [nombre, altura, fdn, peso, genero]
+function pesoIdeal1(altura, vael0, vael1, vael3) {
 
- }
-
-while (loop === true) {    
-
-  const nombre = prompt('Ingrese su nombre completo para continuar')
-
-  const altura = parseInt(prompt('Ingrese su altura en centimetros'))
-
-  const edad = parseInt (prompt('Que edad tiene actualmente?'))
-
-  const peso = parseInt (prompt("Ingrese su peso en kilogramos, usando punto para los decimales"))
-
-  const genero = prompt('Con cual genero te sientes mas identificado/a? \n 1 - Masculino \n  2- Femenino')  
-  
-  const datosUsuario = [altura, edad, peso, genero]
-
-  const vael0 = 150
-  const vael1 = 0.75
-  const vael2 = 0.6
-  const vael3 = 50
-        
-  const resultado1 = pesoIdeal1(datosUsuario[0],vael0, vael1, vael3)
-  console.log (resultado1)
-
-  const resultado2 = pesoIdeal2(datosUsuario[0], vael0, vael2, vael3)
-  console.log (resultado2)
-
-  if (genero == 1) {
-
-    saludoCierre1 = alert(`Excelente ${nombre}, tu peso ideal seria de ${resultado1} kg. \n Estas a unos pasos de alcanzarlo!!`)
-    
-  }
-
-  if (genero == 2) {
-   
-    saludoCierre2 = alert (`Excelente ${nombre}, tu peso ideal seria ${resultado2} kg. \n Estas a unos pasos de alcanzarlo!!`)
-
-  }
-
-  let reinicio = confirm('El asistente ha terminado! ¿Desea realizar una nueva consulta?')
-
-  if (reinicio === true) {continue}
-
-  else if (reinicio === false) {loop = false}
- 
+    return ((altura - vael0) * vael1 + vael3)
 }
+
+function pesoIdeal2(altura, vael0, vael2, vael3) {
+
+    return ((altura - vael0) * vael2 + vael3)
+}
+
+sessionStorage.setItem(datos,[nombre, altura, fdn, peso, genero])
