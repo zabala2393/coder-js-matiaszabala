@@ -1,4 +1,3 @@
-
 let saludo = document.getElementById("tituloPrincipal")
 
 saludo.innerHTML = "<h1>Asistente dietario Gemini</h1>"
@@ -11,27 +10,6 @@ formulario.addEventListener('submit', (e) => {
     onclick = guardarDatos(); planObtenido();
 
 })
-
-const plans = [
-
-    { id: 1, nombre: 'Plan Alpha', precio: '23000' },
-    { id: 2, nombre: 'Plan Beta', precio: '25000' },
-    { id: 3, nombre: 'Plan Gamma', precio: '30000' },
-    { id: 4, nombre: 'Plan Epsilon', precio: '34000' },
-
-]
-
-function mostrarPlanes() {
-
-    plans.forEach(plan => {
-
-        let planes = document.getElementById("")
-
-        
-    });
-
-
-}
 
 const vael0 = 150
 const vael1 = 0.75
@@ -47,23 +25,22 @@ let objetivoUsuario = document.getElementById("objetivo").value
 
 const datos = [nombreUsuario, alturaUsuario, fdnUsuario, pesoUsuario, generoUsuario, objetivoUsuario]
 
-function planObtenido() {
+const plans = [
+    { id: 1, nombre: 'Plan Alpha', precio: '23000' },
+    { id: 2, nombre: 'Plan Beta', precio: '25000' },
+    { id: 3, nombre: 'Plan Gamma', precio: '30000' },
+    { id: 4, nombre: 'Plan Epsilon', precio: '34000' },
+]
 
-    if (objetivoUsuario == 'ganarMasa') {
-        let planRecomendado = document.getElementById('plan1')
-        planRecomendado.innerHTML = `<h4>Para ganar masa muscular te recomendamos el ${(plans[0].nombre)}, el cual incluye una completa rutina de ejercicios, ademas de un plan de alimentacion y asistencia on-line personalizada de nuestros coachs</h4>`
-    }
+function mostrarPlanes() {
 
-    if (objetivoUsuario == 'subirPeso') {
-        let planRecomendado = document.getElementById('plan1')
-        planRecomendado.innerHTML = `<h4>Si necesitas subir de peso te recomendamos el ${(plans[1].nombre)} el cual incluye un estricto plan dietario. Ademas contaras con la asistencia de profesionales cuando necesites</h4>`
-    }
+    plans.forEach(e => {
 
-    if (objetivoUsuario == 'bajarPeso') {
-        let planRecomendado = document.getElementById('plan1')
-        planRecomendado.innerHTML = `<h4>Si necesitas bajar de peso te recomendamos el ${(plans[2].nombre)}, el cual incluye una rutina de ejercicios personalizada. Ademas contaras con un plan dietario y asistencia profesional cuando necesites</h4>`
-    }
-
+        const planes = document.getElementById("planes")
+        const li = document.createElement("li")
+        li.innerText = e.nombre
+        planes.appendChild(li)
+    })
 }
 
 function guardarDatos() {
@@ -98,9 +75,6 @@ function guardarDatos() {
 
         mensajeResultado.innerHTML = `Enhorabuena ${nombreUsuario} ! Tu peso ideal seria de ${resultado2} \n A continuacion te mostramos algun planes recomendados`
 
-        let planRecomendado = document.getElementById('plan1')
-        planRecomendado.innerHTML = '<h4>Para bajar de peso'
-
     }
 
     formulario.addEventListener('reset', () => {
@@ -111,3 +85,23 @@ function guardarDatos() {
     })
 }
 
+function planObtenido() {
+
+    if (objetivoUsuario == 'ganarMasa') {
+        let planRecomendado = document.getElementById('plan1')
+        planRecomendado.innerHTML = `<h4>Para ganar masa muscular te recomendamos el ${(plans[0].nombre)}, el cual incluye una completa rutina de ejercicios, ademas de un plan de alimentacion y asistencia on-line personalizada de nuestros coachs</h4>\n <h5>A continuacion te mostramos todos los planes disponibles</h5>`
+    }
+
+    if (objetivoUsuario == 'subirPeso') {
+        let planRecomendado = document.getElementById('plan1')
+        planRecomendado.innerHTML = `<h4>Si necesitas subir de peso te recomendamos el ${(plans[1].nombre)} el cual incluye un estricto plan dietario. Ademas contaras con la asistencia de profesionales cuando necesites</h4> \n <h5>A continuacion te mostramos todos los planes disponibles</h5>`
+    }
+
+    if (objetivoUsuario == 'bajarPeso') {
+        let planRecomendado = document.getElementById('plan1')
+        planRecomendado.innerHTML = `<h4>Si necesitas bajar de peso te recomendamos el ${(plans[2].nombre)}, el cual incluye una rutina de ejercicios personalizada. Ademas contaras con un plan dietario y asistencia profesional cuando necesites</h4> \n <h5>A continuacion te mostramos todos los planes disponibles</h5>`
+    }
+
+    mostrarPlanes()
+
+}

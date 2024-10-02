@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <header>
         <h1 id="tituloPrincipal"></h1>
@@ -19,46 +21,49 @@
                     <input type="text" id="nombre">
                 </li>
                 <li>
-                    <label for="Ingrese su fecha de nacimiento">Fecha de nacimiento</label>                
+                    <label for="Ingrese su fecha de nacimiento">Fecha de nacimiento</label>
                     <input type="date" name="fdn" id="fdn">
-                          </li>
-                          <li>
-                              <label for="Ingrese su peso en kilogramos">Peso actual</label>
-                              <input type="number" id="peso">
-                          </li>
-                          <li>
-                              <label for="Ingrese su altura en centimetros">Altura</label>
-                              <input type="number" id="altura">
-                          </li>
-                          <li>
-                              <label for="Genero">Genero</label>
-                              <select name="genero" id="genero">
-                                  <option value="hombre">Masculino</option>
-                                  <option value="mujer">Femenino</option>
-                              </select>
-                          </li>
-                          <li>
-                              <select name="Objetivo a alcanzar con la dieta" id="objetivo">Que objetivo necesitas alcanzar?
-                                <option value="subirPeso">Subir de peso</option>
-                                <option value="ganarMasa">Ganar masa muscular</option>
-                                <option value="bajarPeso">Bajar de peso</option>
-                            </select>
-                          </li>
+                </li>
+                <li>
+                    <label for="Ingrese su peso en kilogramos">Peso actual</label>
+                    <input type="number" id="peso">
+                </li>
+                <li>
+                    <label for="Ingrese su altura en centimetros">Altura</label>
+                    <input type="number" id="altura">
+                </li>
+                <li>
+                    <label for="Genero">Genero</label>
+                    <select name="genero" id="genero">
+                        <option value="hombre">Masculino</option>
+                        <option value="mujer">Femenino</option>
+                    </select>
+                </li>
+                <li>
+                    <select name="Objetivo a alcanzar con la dieta" id="objetivo">Que objetivo necesitas alcanzar?
+                        <option value="subirPeso">Subir de peso</option>
+                        <option value="ganarMasa">Ganar masa muscular</option>
+                        <option value="bajarPeso">Bajar de peso</option>
+                    </select>
+                </li>
 
-                          <li>
-                            <button type="submit" class="botonFormulario">Confirmar</button>
-                            <button type="reset" class="botonReinicio">Nueva consulta</button>
-                          </li>
-              </ul>
+                <li>
+                    <button type="submit" class="botonFormulario">Confirmar</button>
+                    <button type="reset" class="botonReinicio">Nueva consulta</button>
+                </li>
+
+            </ul>
+
         </form>
 
         <h3 id="resultado"></h3>
 
         <div id="plan1"></div>
-        <div id="plan2"></div>
 
+        <ul id="planes"></ul>
 
     </main>
     <script src="script.js"></script>
 </body>
+
 </html>
