@@ -166,7 +166,7 @@ formulario.addEventListener('reset', () => {
     let planRecomendado = document.getElementById('plan1')
     let planesTodos = document.getElementById("planes")
     let error = document.getElementById('formularioError')
-    onclick = sessionStorage.clear(); mensajeResultado.innerHTML = ""; planRecomendado.innerHTML = ""; planesTodos.innerHTML = ""; error.innerText = "";
+    onclick = mensajeResultado.innerHTML = ""; planRecomendado.innerHTML = ""; planesTodos.innerHTML = ""; error.innerText = "";
 })
 
 formulario.addEventListener('submit', (e) => {
