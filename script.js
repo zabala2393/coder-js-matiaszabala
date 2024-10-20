@@ -73,16 +73,24 @@ function verificarInputs(e) {
 
 }
 
+function Perfil(nombre, altura, fdn, peso, objetivo, genero) {
+
+    this.nombre = nombre
+    this.altura = altura
+    this.fdn = fdn
+    this.peso = peso
+    this.objetivo = objetivo
+    this.genero = genero
+}
+
 function mostrarPlanes() {
 
     plans.forEach(e => {
-
         const planes = document.getElementById("planes")
-        const li = document.createElement("li")
-        li.innerText = " "
-        li.innerText = e.nombre
-        planes.appendChild(li)
-
+        const plan = document.createElement("section")
+        plan.innerText = " "
+        plan.innerText = e.nombre, e.precio, e.duracion, e.especialista;
+        planes.appendChild(plan)
     })
 }
 
@@ -99,56 +107,67 @@ function procesarDatos() {
     let generoUsuario = document.getElementById("genero").value
     let objetivoUsuario = document.getElementById("objetivo").value
 
-    const datos = [nombreUsuario, alturaUsuario, fdnUsuario, pesoUsuario, generoUsuario, objetivoUsuario]
-
-    sessionStorage.setItem(datos, JSON.stringify(datos))
-
     let mensajeResultado = document.getElementById("resultado")
 
-    if (generoUsuario === "hombre") {
+    switch (generoUsuario) {
 
-        const resultado = pesoIdeal(alturaUsuario, alturaMin, coefH, pesoMin)
-        mensajeResultado.innerHTML = `Enhorabuena ${nombreUsuario} ! Tu peso ideal a conseguir seria de ${resultado} \n A continuacion te mostramos algun planes recomendados`
-    }
-    else {
-        const resultado = pesoIdeal(alturaUsuario, alturaMin, coefM, pesoMin)
-        mensajeResultado.innerHTML = `Enhorabuena ${nombreUsuario} ! Tu peso ideal seria de ${resultado} \n A continuacion te mostramos algun planes recomendados`
+        case "hombre":
+            let resultadoH = pesoIdeal(alturaUsuario, alturaMin, coefH, pesoMin)
+            mensajeResultado.innerHTML = `Enhorabuena ${nombreUsuario} ! Tu peso ideal a conseguir seria de ${resultadoH} \n A continuacion te mostramos el plan recomendado`
+            break
+
+        case "mujer":
+            const resultadoM = pesoIdeal(alturaUsuario, alturaMin, coefM, pesoMin)
+            mensajeResultado.innerHTML = `Enhorabuena ${nombreUsuario} ! Tu peso ideal seria de ${resultadoM} \n A continuacion te mostramos el plan recomendado`
+            break
     }
 
-    mostrarPlanes();
+    let consulta = `nombreUsuario`[nombreUsuario, alturaUsuario, fdnUsuario, pesoUsuario, objetivoUsuario, generoUsuario]
+    localStorage.setItem(consulta, JSON.stringify(consulta))
 }
 
 function planObtenido() {
 
-
+    let resultado = document.getElementById('resultado')
     let objetivoUsuario = document.getElementById("objetivo").value
     let pesoUsuario = document.getElementById("peso").value
     let planRecomendado = document.getElementById('plan1')
 
     planRecomendado.innerHTML = ''
 
-    if (objetivoUsuario == 'ganarMasa') {
+    switch (objetivoUsuario) {
 
-        planRecomendado.innerHTML = `<h4>Para ganar masa muscular te recomendamos el ${(plans[0].nombre)}, el cual incluye una completa rutina de ejercicios, ademas de un plan de alimentacion y asistencia on-line personalizada de nuestros coachs</h4>\n <h5>A continuacion te mostramos todos los planes disponibles</h5>`
-    }
+        case "ganarMasa":
 
-    if (objetivoUsuario === 'pesoIdeal' && pesoUsuario<resultado) {
+            planRecomendado.innerHTML = `<h4>Para ganar masa muscular te recomendamos el ${(plans[0].nombre)}, el cual incluye una completa rutina de ejercicios, ademas de un plan de alimentacion y asistencia on-line personalizada de nuestros coachs</h4>\n <h5>A continuacion te mostramos todos los planes disponibles</h5>`
 
-        planRecomendado.innerHTML = `<h4>Para poder mejorar tu peso te recomendamos el ${(plans[1].nombre)} el cual incluye un estricto plan dietario. Ademas contaras con la asistencia de profesionales cuando necesites</h4> \n <h5>A continuacion te mostramos todos los planes disponibles</h5>`
-    }
+            break
 
-    else {
+        case "quemarGrasa":
 
-        planRecomendado.innerHTML = `<h4>Para poder eliminar esos kilos de mas te recomendamos el ${(plans[2].nombre)}, el cual incluye una rutina de ejercicios personalizada. Ademas contaras con un plan dietario y asistencia profesional cuando necesites</h4> \n <h5>A continuacion te mostramos todos los planes disponibles</h5>`
-    }
+            planRecomendado.innerHTML = `<h4>Para reducir tu grasa corporal te recomendamos el ${(plans[3].nombre)}, el cual incluye un extensiva rutina de ejercicios para ayudarte a moldear tu cuerpo de la mejor manera. Contaras tambien con la asistencia de profesionales durante el proceso \n <h5>A continuacion te mostramos todos los planes disponibles</h5>`
 
-    if (objetivoUsuario === 'quemarGrasa') {
+            break
 
-        planRecomendado.innerHTML = `<h4>Para reducir tu grasa corporal te recomendamos el ${(plans[3].nombre)}, el cual incluye un extensiva rutina de ejercicios para ayudarte a moldear tu cuerpo de la mejor manera. Contaras tambien con la asistencia de profesionales durante el proceso \n <h5>A continuacion te mostramos todos los planes disponibles</h5>`
+        case "pesoIdeal":
+
+            if (resultado <= 0) {
+
+                let error = document.getElementById('formularioError')
+                error.innerText = 'Por favor, rellene todos los campos correctamente para continuar'
+                break
+            } else if (pesoUsuario < "pesoIdeal") {
+
+                planRecomendado.innerHTML = `<h4>Para poder mejorar tu peso te recomendamos el ${(plans[1].nombre)} el cual incluye un estricto plan dietario. Ademas contaras con la asistencia de profesionales cuando necesites</h4> \n <h5>A continuacion te mostramos todos los planes disponibles</h5>`
+                break
+            } else {
+
+                planRecomendado.innerHTML = `<h4>Para poder eliminar esos kilos de mas te recomendamos el ${(plans[2].nombre)}, el cual incluye una rutina de ejercicios personalizada. Ademas contaras con un plan dietario y asistencia profesional cuando necesites</h4> \n <h5>A continuacion te mostramos todos los planes disponibles</h5>`
+                break
+            }
 
     }
 }
-
 /** Metodo de array y eventlisteners */
 
 inputs.forEach((input) => {
@@ -156,7 +175,7 @@ inputs.forEach((input) => {
     input.addEventListener('keyup', verificarInputs);
     input.addEventListener('blur', verificarInputs);
     input.addEventListener('keypress', verificarInputs);
-    input.addEventListener('reset', verificarInputs);
+
 })
 
 formulario.addEventListener('reset', () => {
@@ -181,8 +200,16 @@ formulario.addEventListener('submit', (e) => {
     mensajeResultado.innerHTML = ""
 
     if (campos.nombre && campos.altura && campos.peso) {
-        onclick = procesarDatos(); planObtenido();
+        onclick = procesarDatos(); planObtenido(); mostrarPlanes();
     } else {
-        error.innerText = 'Por favor, rellene todos los campos correctamente para continuar'
-    }    
+        Toastify({
+            text: 'Por favor, rellene todos los campos correctamente para continuar',
+            duration: 2500,
+            close: true,
+            gravity: "top",
+            position: "right",
+            stopOnFocus: true,
+            backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+        }).showToast();
+    }
 })

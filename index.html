@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 
 <body>
@@ -26,11 +27,11 @@
                 </li>
                 <li>
                     <label for="Ingrese su peso en kilogramos">Peso actual</label>
-                    <input type="number" class="input__peso" id="peso">
+                    <input type="number" class="input__peso" placeholder="kgs." id="peso">
                 </li>
                 <li>
                     <label for="Ingrese su altura en centimetros">Altura</label>
-                    <input type="number" class="input__altura" id="altura">
+                    <input type="number" class="input__altura" placeholder="cms."  id="altura">
                 </li>
                 <li>
                     <label for="Genero">Genero</label>
@@ -62,9 +63,12 @@
 
         <div id="plan1"></div>
 
-        <ul id="planes"></ul>
+        <div id="planes"></ul>
 
     </main>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="script.js"></script>
 </body>
 
