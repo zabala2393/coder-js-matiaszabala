@@ -3,7 +3,6 @@ import { useCart } from "../context/CartContext"
 import ItemCount from "./ItemCount"
 
 function CartList(item) {
-
     const { cart } = useCart()
     return (
         <ListGroup >{cart.map(item =>
